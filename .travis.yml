@@ -1,0 +1,9 @@
+language: go
+
+go:
+  - "1.13.4"
+script:
+  - go build ./cmd/biz
+  - go build ./cmd/islb
+  - go build ./cmd/sfu
+

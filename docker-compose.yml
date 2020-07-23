@@ -1,0 +1,85 @@
+version: '3.7'
+
+services:
+  web:
+    # These are commented out on purpose, when uncommented `docker-compose up` will
+    # execute build instead of pulling from Dockerhub. When ready to build new images uncomment
+    # and execute `docker-compose build && docker-compose push`
+    #
+    # build:
+    #   dockerfile: ./docker/web.Dockerfile
+    #   context: .
+    image: pionwebrtc/ion-web:0.2.0
+    volumes:
+      - "./docker/Caddyfile:/etc/Caddyfile"
+    ports:
+      - 80:80
+      - 8080:8080
+      - 8443:8443
+    depends_on:
+      - biz
+    environment:
+    - WWW_URL
+    - ADMIN_EMAIL
+
+  sfu:
+    # These are commented out on purpose, when uncommented `docker-compose up` will
+    # execute build instead of pulling from Dockerhub. When ready to build new images uncomment
+    # and execute `docker-compose build && docker-compose push`
+    #
+    # build:
+    #   dockerfile: ./docker/sfu.Dockerfile
+    #   context: .
+    command: "-c /configs/sfu.toml"
+    image: pionwebrtc/ion-sfu:0.2.0
+    volumes:
+      - "./docker/sfu.toml:/configs/sfu.toml"
+    ports:
+      - "5000-5200:5000-5200/udp"
+    depends_on:
+      - nats
+      - etcd
+
+  biz:
+    # These are commented out on purpose, when uncommented `docker-compose up` will
+    # execute build instead of pulling from Dockerhub. When ready to build new images uncomment
+    # and execute `docker-compose build && docker-compose push`
+    #
+    # build:
+    #   dockerfile: ./docker/biz.Dockerfile
+    #   context: .
+    image: pionwebrtc/ion-biz:0.2.0
+    command: "-c /configs/biz.toml"
+    volumes:
+      - "./docker/biz.toml:/configs/biz.toml"
+    depends_on:
+      - nats
+      - etcd
+
+  islb:
+    # These are commented out on purpose, when uncommented `docker-compose up` will
+    # execute build instead of pulling from Dockerhub. When ready to build new images uncomment
+    # and execute `docker-compose build && docker-compose push`
+    #
+    # build:
+    #   dockerfile: ./docker/islb.Dockerfile
+    #   context: .
+    image: pionwebrtc/ion-islb:0.2.0
+    command: "-c /configs/islb.toml"
+    volumes:
+      - "./docker/islb.toml:/configs/islb.toml"
+    depends_on:
+      - nats
+      - etcd
+      - redis
+
+  nats:
+    image: nats
+
+  etcd:
+    image: gcr.io/etcd-development/etcd:v3.3.18
+    entrypoint: "/usr/local/bin/etcd"
+    command: "--listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379"
+
+  redis:
+    image: redis:5.0.7
