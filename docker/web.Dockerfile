@@ -15,7 +15,7 @@ RUN apk add --no-cache --update nodejs npm \
   && apk del --no-cache nodejs npm
 
 RUN apk add --no-cache --update curl bash \
-    && curl https://getcaddy.com | bash -s personal \
+    && curl https://getcaddy.com | bash \
     && apk del --no-cache curl bash
 
 ENTRYPOINT ["/usr/local/bin/caddy"]
