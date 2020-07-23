@@ -1,6 +1,5 @@
 FROM alpine
 
-ENV ENABLE_TELEMETRY="false"
 WORKDIR /usr/src/ion
 
 COPY ./sdk/js /usr/src/ion
@@ -15,6 +14,6 @@ RUN apk add --no-cache --update nodejs npm \
   && apk del --no-cache nodejs npm
 
 FROM caddy:2.0.0-alpine
+ENV ENABLE_TELEMETRY="false"
 
-ENTRYPOINT ["caddy"]
-CMD ["run", "--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=true"]
+COPY Caddyfile /etc/caddy/Caddyfile
