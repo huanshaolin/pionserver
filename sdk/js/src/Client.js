@@ -4,7 +4,7 @@ import uuidv4 from 'uuid/v4';
 import Stream from './Stream';
 import * as sdpTransform from 'sdp-transform';
 
-const ices = 'stun:stun.stunprotocol.org:3478';
+const ices = 'stun:stun.l.google.com:19302';
 
 const DefaultPayloadTypePCMU = 0;
 const DefaultPayloadTypePCMA = 8;
