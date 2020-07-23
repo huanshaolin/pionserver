@@ -14,9 +14,7 @@ RUN apk add --no-cache --update nodejs npm \
   && rm -rf /usr/src/ion /root/.npm /tmp/* \
   && apk del --no-cache nodejs npm
 
-RUN apk add --no-cache --update curl bash \
-    && curl https://getcaddy.com | bash \
-    && apk del --no-cache curl bash
+RUN apk add --no-cache --update curl bash 
 
 ENTRYPOINT ["/usr/local/bin/caddy"]
 CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=true"]
