@@ -17,4 +17,4 @@ RUN apk add --no-cache --update nodejs npm \
 FROM caddy:2.0.0-alpine
 
 ENTRYPOINT ["caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=true"]
+CMD ["run", "--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=true"]
