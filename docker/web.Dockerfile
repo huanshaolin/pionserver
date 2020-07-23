@@ -1,4 +1,4 @@
-FROM caddy:2.0.0-alpine
+FROM alpine
 
 ENV ENABLE_TELEMETRY="false"
 WORKDIR /usr/src/ion
