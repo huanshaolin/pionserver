@@ -16,7 +16,3 @@ RUN apk add --no-cache --update nodejs npm \
 FROM caddy:2.0.0-alpine
 
 ENV ENABLE_TELEMETRY="false"
-
-WORKDIR /etc/caddy
-
-COPY ./docker/Caddyfile /etc/caddy/
