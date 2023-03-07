@@ -15,7 +15,8 @@ require (
 	github.com/klauspost/cpuid v1.2.3 // indirect
 	github.com/klauspost/reedsolomon v1.9.3 // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
-	github.com/nats-io/nats-server/v2 v2.1.4 // indirect
+	github.com/nats-io/jwt v0.3.2 // indirect
+	github.com/nats-io/nats-server/v2 v2.7.4 // indirect
 	github.com/notedit/sdp v0.0.2
 	github.com/pion/rtcp v1.2.1
 	github.com/pion/rtp v1.4.0
@@ -31,6 +32,6 @@ require (
 	github.com/xtaci/kcp-go v5.4.20+incompatible
 	github.com/xtaci/lossyconn v0.0.0-20200209145036-adba10fffc37 // indirect
 	go.etcd.io/etcd v3.3.18+incompatible
-	golang.org/x/crypto v0.0.0-20200323165209-0ec3e9974c59
+	golang.org/x/crypto v0.0.0-20220112180741-5e0467b6c7ce
 	sigs.k8s.io/yaml v1.2.0 // indirect
 )
